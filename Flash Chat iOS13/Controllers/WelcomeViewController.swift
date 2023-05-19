@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
         //Using Library for WelcomeVC
-        titleLabel.text = "⚡️FlashChat"
+        titleLabel.text = K.appName
         
         /*
         //Manual Code for WelcomeVC
