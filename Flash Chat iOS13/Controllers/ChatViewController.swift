@@ -14,9 +14,17 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
+    var messages: [Message] = [
+    Message(sender: "123@123.com", body: "Hey!"),
+    Message(sender: "123@123.com", body: "Hola"),
+    Message(sender: "123@123.com", body: "What's up")
+    ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self //For trigger the delegate
         title = K.appName
         navigationItem.hidesBackButton = true
 
@@ -39,4 +47,17 @@ class ChatViewController: UIViewController {
         }
     }
     
+}
+
+//Protocolo which needs to know HOW MANY CELL IT NEEDS and WHAT TO DISPLAY IN THE TableView
+extension ChatViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        cell.textLabel?.text = messages[indexPath.row].body
+        return cell
+    }
 }
