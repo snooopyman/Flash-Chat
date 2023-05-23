@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         let db = Firestore.firestore()
-        print(db)
+        
+        IQKeyboardManager.shared.enable = true //cuando se active el teclado, todo se va para arriba
+        IQKeyboardManager.shared.enableAutoToolbar = false //quitar el done del teclado
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true //ocultar teclado si se presiona en otro lado de la pantalla
         return true
     }
 
